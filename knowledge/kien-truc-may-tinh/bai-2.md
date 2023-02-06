@@ -14,7 +14,7 @@
 
 ---
 
-## Phát sinh tín hiệu điều khiển
+## Phát sinh tín hiệu điều khiển (instruction code)
 
 - Toàn bộ chương trình là một tuần tự gồm nhiều bước.
 - Mỗi bước cần tiến hành một vài phép số học và luận lý trên data nào đó.
@@ -34,7 +34,25 @@ Một code duy nhất cho một tập tín hiệu có thể.
 - Nội dung trong bộ nhớ được định vị theo vị trí, không cần biết kiểu data là gì.
 - Thực thi chương trình theo kiểu tuần tự, từ instruction này đến instruction kế tiếp.
 
-Bài tập bài 3: xem lại Von nunnumann
+---
+
+## I/O module
+
+- Data và instruction code phải được đưa vào trong hệ thống thông qua module nhập.
+- Cần lấy hay thông báo kết quả tính toán thông qua module xuất.
+
+> $\rightarrow$ Được gọi là I/O module.
+
+---
+
+## Bộ nhớ chính
+
+> - Thiết bị nhập đưa data và instruction code vào theo tuần tự, nhưng chương trình không phải thực thi theo tuần tự một cách cứng nhắc.
+> - Hoạt động tính toán có thể phải truy xuất nhiều dữ kiện hơn tại một thời điểm theo một tuần tự không thể dự đoán được.
+>
+> $\rightarrow$ Cần có nơi lưu trữ tạm thời cả data và instruction code $\rightarrow$ Bộ nhớ chính (*main memory*).
+
+*xem ảnh trong slide*
 
 ---
 
