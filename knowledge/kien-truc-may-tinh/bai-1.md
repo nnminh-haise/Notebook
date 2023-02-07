@@ -15,9 +15,9 @@ Hai thuật ngữ dùng để mô tả hệ thống máy tính.
 
 ---
 
-## Cấu trúc và chức năng:
+## Cấu trúc và chức năng
 
-- **Cấu trúc:** cách thức các thành phần hệ thống liên hệ với nhau. 
+- **Cấu trúc:** cách thức các thành phần hệ thống liên hệ với nhau.
 - **Chức năng:** hoạt động của mỗi thành phần riêng lẻ với tư cách là một phần của cấu trúc.
 
 ---
@@ -77,16 +77,16 @@ Hai thuật ngữ dùng để mô tả hệ thống máy tính.
 
 - Thế hệ thứ nhất:
 
-    - Đèn chân không (vacuum tubes).
-    - ENIAC
-    - John Von Neumann/Alan Turing.
+    1. Đèn chân không (vacuum tubes).
+    2. ENIAC
+    3. John Von Neumann/Alan Turing.
 
 - Thế hệ thứ hai:
 
-    - Transistor.
-    - Multiplexer.
-    - Lập trình mức cao.
-    - Phần mềm hệ thống.
+    1. Transistor.
+    1. Multiplexer.
+    1. Lập trình mức cao.
+    1. Phần mềm hệ thống.
 
 - Thế hệ thứ ba:
 
