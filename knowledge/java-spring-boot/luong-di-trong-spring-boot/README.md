@@ -48,7 +48,7 @@ Khi kết hợp hai mô hình lại, sẽ có được ứng dụng Spring Boot 
 Về Model và View:
 
 - Model chỉ đơn giản là các dối tượng được Service tính toán xong trả về cho Controller.
-- View thì có 2 laoij, một là dạng truyền thống là trả về 1 cục HTML có data rồi. Lúc này Controller sẽ pass dữ liệu vào View và return về (Spring MVC có JSP hoặc template engine như Thymeleaf làm điều đó).
+- View thì có 2 loại, một là dạng truyền thống là trả về 1 cục HTML có data rồi. Lúc này Controller sẽ pass dữ liệu vào View và return về (Spring MVC có JSP hoặc template engine như Thymeleaf làm điều đó).
 - View dạng 2 là dạng View tách riêng (không thuộc về project Spring Boot). Thường có trong các hệ thống dùng API. View sẽ được biết riêng bằng React, Angular, ... Controller sẽ đưa dữ liệu Model thông qua API cho View và cũng nhận lại các yêu cầu qua API luôn.
 
 ### Sơ đồ luồng đi
@@ -58,5 +58,24 @@ Về Model và View:
 ***Xem xét sơ đồ trên từ trái sang:***
 
 - Đầu tiên, user sẽ vào View để xem, tương tác.
+- Khi user load dữ liệu (ví dụ click nút reload), một request được gửi từ View đến Controller.
+- Từ Controller nhận yêu cầu từ View và bắt đầu gọi các Service thích hợp (gọi các method có trong các Service).
+- Service nhận yêu cầu từ Controller, nếu các yêu cầu đơn giản, thì Service có thể tính toán và trả lại kết quả ngay. Ngược lại nếu các tính toán có liên quan đến database thì Service sẽ gửi yêu cầu truy vấn đến Repository.
+- Repository nhận yêu cầu từ Service, thao tác với database. *Data lấy ra trong DB được hệ thống ORM (như JPA hoặc Hibernate) mapping thành các object (trong Java). Các object này gọi là Entity.*
 
-[resource](https://viblo.asia/p/luong-di-trong-spring-boot-ORNZqdELK0n)
+***Chiều ngược lại:***
+
+- Service nhận các Entity từ Repository, sau khi thực hiện các biến đổi (tính toán/thêm method/...) và biến Entity thành Model. Model trả về cho Controller.
+- Controller nhận Model và trả về View.
+    1. Dùng template engine, pass dữ liệu của Model vào trang HTML rồi cục HTML có data về cho client.
+    2. Gửi qua API, View tự parse và thể hiện lên client.
+- Khi View hiển thị xong, user sẽ thấy thông tin cần tìm thể hiện ở trên web.
+
+***Một số cách tổ chức luồng đi tốt:***
+
+- Giữ Controller ít nhất có thể $\rightarrow$ Controller chỉ đóng vai trò trung gian giúp kết nối View và Service. Do vậy Controller không nên chứa nhiều code, thay vào đó nên tích hợp vào Service.
+- Nên tách bạch Service rõ ràng. Không nên để nhiều tích năng vào cùng một Service, nên tách thành nhiều Service khác nhau, mỗi Service thực hiện một công việc cụ thể rõ ràng.
+
+## Code ví dụ
+
+
