@@ -94,7 +94,7 @@
 
 ---
 
-## Bất đẳng thức Kraft
+### Bất đẳng thức Kraft
 
 Cho bộ mã có tính Prefix và chiều dài của các từ mã là $l_1, l_2, \ldots, l_N$.
 
@@ -115,7 +115,179 @@ $$
 >
 > $\Rightarrow$ Không phải bộ mã Prefix
 
+### 4) Tính Prefix tối thiểu
 
+Xét bộ mã **có tính Prefix** và $x$ là một từ mã của bộ mã. **Bộ mã sẽ có tính Prefix tối thiểu nếu $x0$ và $x1$ là từ mã hoặc thành phần mào đầu của từ mã khác trong bộ mã.**
+
+***Xét bộ mã $A$:***
+
+| Nguồn tin | Bộ mã A |
+| :--- | :--- |
+| $S_1$ | 00 |
+| $S_2$ | 10 |
+| $S_3$ | 110 |
+| $S_4$ | 111 |
+
+Bộ mã có tính Prefix và Prefix tối thiểu không?
+
+***Giải:***
+
+- Bộ mã có tính Prefix vì không có từ mã nào là thành phần mào đầu của từ mã khác trong bộ mã.
+- Xét từ mã của $S_1$, thành phần mào đầu là 0.
+    - Ta có: hai biến thể là 00 và 01.
+    - Bởi vì 01 không phải là từ mã hoặc thành phần mào đầu của từ mã khác trong bộ mã nên bộ mã **Không có tính chất Prefix tối thiểu.**
+
+***Xét bộ mã $B$:***
+
+| Nguồn tin | Bộ mã B |
+| :---: | :--- |
+| $S_1$ | 00 |
+| $S_2$ | 01 |
+| $S_3$ | 100 |
+| $S_4$ | 111 |
+
+***Giải:***
+
+Tất cả các mào đầu có thể có trong bộ mã: $0, 1, 10, 11$
+
+Các biến thể có thể có:
+
+| Biến thể | Loại |
+| :--- | :--- |
+| 00 | Từ mã |
+| 01 | Từ mã |
+| 10 | Mào đầu |
+| 11 | Mào đầu |
+| 100 | Từ mã |
+| 101 | Không mào đầu hay từ mã |
+| 110 | Không mào đầu hay từ mã |
+| 111 | Từ mã |
+
+$\Rightarrow$ **Vậy bộ mã không có tính Prefix tối thiểu.**
+
+***Xét bộ mã C:***
+
+| Nguồn tin | Bộ mã B |
+| :---: | :--- |
+| $A$ | 00 |
+| $B$ | 01 |
+| $C$ | 100 |
+| $D$ | 101 |
+| $E$ | 110 |
+| $F$ | 111 |
+
+- Bộ mã có tính Prefix
+
+- Tất cả các mào đầu có thể có trong bộ mã: $0, 1, 10, 11$
+
+Các biến thể có thể có:
+
+| Biến thể | Loại |
+| :--- | :--- |
+| 00 | Từ mã |
+| 01 | Từ mã |
+| 10 | Mào đầu |
+| 11 | Mào đầu |
+| 100 | Từ mã |
+| 101 | Từ mã |
+| 110 | Từ mã |
+| 111 | Từ mã |
+
+$\Rightarrow$ ***Vậy bộ mã có tính Prefix tối thiểu.***
+
+---
+
+## Các phương pháp biểu diễn mã
+
+### 1) Bảng đối chiếu mã
+
+(*slide*)
+
+### 2) Cây mã
+
+- **Gốc:** 
+- **Nhánh:** tối đa $m$ nhánh. Trong đó $m$ là cơ số mã. Mỗi nút sẽ rẽ tối đa $m$ nhánh.
+- **Nút cuối:** nơi không rẽ nhánh.
+
+***Duyệt cây mã:***
+
+- Đi từ gốc về nút cuối để tìm từ mã.
+
+| Nguồn tin | Bộ mã B |
+| :---: | :--- |
+| $A$ | 00 |
+| $B$ | 01 |
+| $C$ | 10 |
+| $D$ | 110 |
+| $E$ | 1110 |
+| $F$ | 1111 |
+
+(*Vẽ cây*)
+
+### 3) Mặt tọa độ mã
+
+(*slide*)
+
+### 4) Hàm cấu trúc mã
+
+(*slide*)
+
+### 5) Đồ hình kết cấu mã
+
+(*slide*)
+
+---
+
+## Mã đều
+
+Mã đều là bộ mã mà các từ mã có chiều dài bằng nhau.
+
+$$\forall : l_k = \overline{L}$$
+
+*Ví dụ:*
+
+| Kí hiệu $x$ | Từ mã $w$ | Chiều dài từ mã $l$ |
+| :---: | :---: | :---: |
+| A | 00 | 2 |
+| B | 01 | 2 |
+| C | 10 | 2 |
+| D | 11 | 2 |
+
+- **Bộ mã đều có tính Prefix.**
+
+*Ví dụ:*
+
+| Nguồn tin | Bộ mã A |
+| :---: | :--- |
+| $S_1$ | 009 |
+| $S_2$ | 011 |
+| $S_3$ | 010 |
+| $S_4$ | 011 |
+| $S_5$ | 100 |
+| $S_6$ | 111 |
+
+$\rightarrow$ Không phải có tính prefix tối thiểu.
+
+*Ví dụ:*
+
+| Nguồn tin | Bộ mã B |
+| :---: | :--- |
+| $S_1$ | 009 |
+| $S_2$ | 011 |
+| $S_3$ | 010 |
+| $S_4$ | 011 |
+| $S_5$ | 100 |
+| $S_6$ | 101 |
+| $S_7$ | 110 |
+| $S_8$ | 111 |
+
+$\rightarrow$ Có tính prefix tối thiểu.
+
+## Bộ mã đầy
+
+Bộ mã đều có các từ mã có chiều dài bằng $L$ và số từ mã trong bộ mã là $N = 2^L$ (nhị phân) thì là bộ mã này là bộ mã đầy.
+
+- Mã đầy có tính chất prefix tối thiểu.
 
 ---
 
