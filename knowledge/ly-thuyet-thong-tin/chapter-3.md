@@ -291,4 +291,122 @@ Bộ mã đều có các từ mã có chiều dài bằng $L$ và số từ mã 
 
 ---
 
+## Phần nguyên
+
+$x$ là số thực, $\lbrack x \rbrack$ là phần nguyên của $x$.
+
+Ví dụ: $\lbrack 1.1 \rbrack = 1, \lbrack -2.1 \rbrack = -2, \lbrack 3 \rbrack = 3$.
+
+$\lfloor x \rfloor$ là số nguyên lớn nhất mà nhỏ hơn hoặc bằng $x$.
+
+Ví dụ: $\lfloor 1.1 \rfloor = 1, \lfloor -2.1 \rfloor = -3, \lfloor 3 \rfloor = 3$.
+
+$\lceil x \rceil$ là số nguyên nhỏ nhất mà lớn hơn hoặc bằng $x$.
+
+Ví dụ: $\lceil 1.1 \rceil = 2, \lceil -2.1 \rceil = -2, \lceil 3 \rceil = 3$.
+
+### Sửa bài tập
+
+Cho nguồn tin $M$ tin, mã đều. Gọi $l$ là số bit của mỗi từ mã.
+
+***Giải:***
+
+Số từ mã có thể có: $2^l$. $\Rightarrow 2^l \ge M \Rightarrow l \ge \log_2(M)$.
+
+Kết luận: $l = \lceil \log_2(M) \rceil$.
+
+---
+
+## Mã đều
+
+- Có tính prefix.
+- Tính prefix tối thiểu $\rightarrow$ chuyển sang bộ mã đầy.
+
+---
+
+## Mã hóa không đều
+
+- Các từ mã có chiều dài khác nhau.
+- Sử dụng thống kê.
+- chiều dài trung bình càng ngắn càng tốt.
+
+- Nguyên tắc: kỹ tự nào có tần suất xuất hiện càng nhiều thì mã hóa bằng từ mã có chiều dài ngắn và ngược lại.
+
+---
+
+## Đổi thập phân sang nhị phân
+
+Ví dụ: Đổi $0.5$ sang nhị phân.
+
+$$
+\begin{matrix}
+0.5 \times 2 = 1.0 & \\
+0.0 \times 2 = 0.0 & (\text{stop}) \\
+\Rightarrow 0.5_{(10)} = 0.1_{(2)}
+\end{matrix}
+$$
+
+Ví dụ: Đổi $0.625$ sang nhị phân.
+
+$$
+\begin{matrix}
+0.625 \times 2 = 1.25 & \\
+0.25 \times 2 = 0.5 & \\
+0.5 \times 2 = 1.0 & (\text{stop}) \\
+\Rightarrow 0.625_{(10)} = 0.101_{(2)}
+\end{matrix}
+$$
+
+Ví dụ: Đổi $0.2$ sang nhị phân.
+
+$$
+\begin{matrix}
+0.2 \times 2 = 0.4 & \\
+0.4 \times 2 = 0.8 & \\
+0.8 \times 2 = 1.6 & \\
+0.6 \times 2 = 1.2 & \\
+0.2 \times 2 = 0.4 & \\
+0.4 \times 2 = 0.8 & \\
+0.8 \times 2 = 1.6 & \\
+0.6 \times 2 = 1.2 & \\
+0.2 \times 2 = 0.4 & \\
+\dots \\
+\Rightarrow 0.2_{(10)} = 0.00110011\ldots_{(2)} = 0.(0011)_{(2)}
+\end{matrix}
+$$
+
+---
+
+## Mã hóa Shannon
+
+> Mã hóa nguồn có 4 ký tự với xác suất xuất hiện là $0.4, 0.3, 0.2, 0.1$ bằng mã Shannon.
+
+| Tin | Xác suất | $Q$ | $l$ | Nhị phân | Từ mã |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| A | 0.4 | 0 | $l_A = - \lceil \log_2(0.4) \rceil = 2$ | $0.000000 \ldots$ | 00 |
+| B | 0.3 | 0.4 | $l_B = - \lceil \log_2(0.3) \rceil = 2$ | $0.011000 \ldots$ | 01 |
+| C | 0.2 | 0.7 | $l_C = - \lceil \log_2(0.2) \rceil = 3$ | $0.101110$ | 101 |
+| D | 0.1 | 0.9 | $l_D = - \lceil \log_2(0.1) \rceil = 4$ | $0.111000$ | 1110 |
+
+(*sắp xếp theo thứ tự giảm dần của xác suất*)
+
+- $Q$ = tổng xác suất của các ký tự bên trên ký tự đang xét.
+- $l_i = -\lceil \log_2(p_i) \rceil$.
+- Nhị phân: đổi $Q$ sang nhị phân.
+- Từ mã: là từ mã ngõ ra với chiều dài $l_i$ bit nhị phân sau dấu phẩy.
+
+Chiều dài từ mã trung bình: $\overline{L} = 0.4 \times 2 + 0.3 \times 2 + 0.2 \times 3 + 0.1 \times 4 = 2.4$ (bit)
+
+Entropy: $H = 0.4 \times \log_2(\dfrac{1}{0.4}) + 0.3 \times \log_2(\dfrac{1}{0.3}) + 0.2 \times \log_2(\dfrac{1}{0.2}) + 0.1 \times \log_2(\dfrac{1}{0.1}) = 1.8464$ (bit)
+
+Hiệu suất mã hóa: $\eta = \dfrac{H}{\overline{L}} \cdot 100\% = 77 \%$
+
+Bộ mã có tính prefix vì không có từ mã nào là thành phần mào đầu của từ mã khác trong bộ mã.
+
+Bộ mã không có tính prefix tối thiểu vì mào đầu $10$ có biến thể $100$ không là từ mà và không là thành phần mào của từ mã nào trong bộ mã.0.4 \times \log_2(\dfrac{1}{0.4})
+
+
+
+---
+
 ## References
