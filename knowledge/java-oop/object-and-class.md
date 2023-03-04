@@ -108,6 +108,231 @@ Cả hai biến `birthday` và `deadline` đều có chung một lớp là `Date
 
 ## Tạo một đối tượng trong Java
 
+File `Problem.java`
+
+```java
+public class Problem {
+    private String m_ProblemName;
+    private String m_Directory;
+
+    public String getM_ProblemName() {
+        return m_ProblemName;
+    }
+
+    public void setM_ProblemName(String m_ProblemName) {
+        this.m_ProblemName = m_ProblemName;
+    }
+
+    public String getM_Directory() {
+        return m_Directory;
+    }
+
+    public void setM_Directory(String m_Directory) {
+        this.m_Directory = m_Directory;
+    }
+
+    public Problem(String problemName, String directory) {
+        this.m_Directory = directory;
+        this.m_ProblemName = problemName;
+    }
+}
+```
+
+File `Main.java`
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        Problem problem = new Problem("math", "c/users/nnminh");
+        System.out.println("name = " + problem.getM_ProblemName());
+        System.out.println("path = " + problem.getM_Directory());
+    }
+}
+```
+
+### Constructor
+
+- Constructor có tên cùng với tên `class`.
+- Một `class` có thể có nhiều hơn một constructor.
+- Một constructor có thể có đa dạng số lượng các tham số.
+- Constructor không có giá trị trả về $\rightarrow$ không có kiểu dữ liệu.
+- Constructor luôn được gọi với từ khóa `new` để khởi tạo cho một trường hoặc một instance mới.
+
+### Lợi ích của tính bao đóng (encapsulation)
+
+- Field accesstor (các getter) chỉ trả về giá trị của field tương ứng.
+- Vì sao không đặt các field public? $\rightarrow$ Vì có thể có nhiều field người dùng không nên truy cập vào, từ đó hạn chế việc thay đổi dữ liệu ngoài ý muốn.
+- Accesstors và Mutators $\rightarrow$ các hàm getter và setter.
+- Dễ dàng thay đổi internal implementation (phương thức viết code).
+- Mutators có thể kiểm tra lỗi (errors checking).
+
+> 💡 ***Không nên viết các Accesstor methods trả về tham chiếu của một trường!***
+
+- Nếu cần trả về một tham chiếu của một trường thì trước tiên sẽ tạo một bản sao của trường đó và sau đó trả về tham chiếu của trường bản sao.
+
+### Private method
+
+- Phần lớn các phương thức đều public, song trong một số trường hợp có một số các phương thức private.
+- Các private method giúp việc chia code thực hiện việc tính toán thành những phương phức trợ giúp (helper method).
+
+### Final field - Trường cố định (hằng)
+
+- Một field có thể sử dụng với từ khóa `final` để tạo thành trường hằng. Và luôn được khởi tạo với một giá trị khởi tạo.
+- Sau đó trường này không thể thay đổi giá trị.
+
+### Static field and method
+
+#### Static field
+
+- Trường static là trường độc nhất trong tất cả các `class` cùng loại.
+
+File `Problem.java` sau khi thêm trường private static int id;
+
+```java
+public class Problem {
+    private String m_ProblemName;
+    private String m_Directory;
+    private static int NextId;
+    private int id;
+
+    public String getM_ProblemName() {
+        return m_ProblemName;
+    }
+
+    public void setM_ProblemName(String m_ProblemName) {
+        this.m_ProblemName = m_ProblemName;
+    }
+
+    public String getM_Directory() {
+        return m_Directory;
+    }
+
+    public void setM_Directory(String m_Directory) {
+        this.m_Directory = m_Directory;
+    }
+
+    public Problem(String problemName, String directory) {
+        this.m_Directory = directory;
+        this.m_ProblemName = problemName;
+    }
+}
+```
+
+**Giải thích:** Có nhiều instances của class `Problem` nhưng trong tất cả các instances đó thì sẽ có chung một trường `id` $\rightarrow$ trường `id` là độc nhất (chung) cho tất cả các instances của class `Problem`.
+
+#### Static constants
+
+- Static field sẽ ít xuất hiện, song static constants sẽ thường xuất hiện hơn.
+- Vì hằng số chỉ cần một instance cho tất cả các class chứ không cần nhiều instance cho nhiều class.
+
+```java
+public class Math {
+    ...
+    public static final double PI = 3.14;
+    ...
+}
+```
+
+**Giải thích:** Hằng số PI chỉ cần có một instance cho mọi instance của class Math có thể có. Ngược lại thì mỗi instance của class Math sẽ có một instance của PI $\rightarrow$ không cần thiết.
+
+#### Static method
+
+- Static method là phương thức không vận hành trên đối tượng. Hoặc không sử dụng tham số ẩn (implicit parameters).
+- Gọi static method không có đối tượng.
+
+File `Problem.java`
+
+```java
+public class Problem {
+    private String m_ProblemName;
+    private String m_Directory;
+    private static int nextId;
+
+    private int id;
+
+    public void setID() {
+        id = nextId;
+        nextId++;
+    }
+
+    public static int getNextId() {
+        return nextId;
+    }
+
+    public String getM_ProblemName() {
+        return m_ProblemName;
+    }
+
+    public void setM_ProblemName(String m_ProblemName) {
+        this.m_ProblemName = m_ProblemName;
+    }
+
+    public String getM_Directory() {
+        return m_Directory;
+    }
+
+    public void setM_Directory(String m_Directory) {
+        this.m_Directory = m_Directory;
+    }
+
+    public Problem(String problemName, String directory) {
+        this.m_Directory = directory;
+        this.m_ProblemName = problemName;
+    }
+}
+```
+
+#### Factory methods
+
+- Factory methods là các phương thức được sử dụng để xây dựng các object khác (ví dụ như xây dựng object khác hoặc object con).
+
+```java
+NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(); 
+NumberFormat percentFormatter = NumberFormat.getPercentInstance(); 
+double x = 0.1;
+System.out.println(currencyFormatter.format(x)); // prints $0.10 
+System.out.println(percentFormatter.format(x)); // prints 10
+```
+
+#### Main method
+
+- Mọi class có thể có một `Main` method để chạy code và thích hợp để chạy unit test.
+
+### Method parameters
+
+File `Custom.java`
+
+```java
+public class Custom {
+    public static int SQR(int value) {
+        return value * value;
+    }
+
+    public static void TrySQR(int value) {
+        value *= value;
+        System.out.println("SQR = " + value);
+    }
+}
+```
+
+File `Main.java`
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(Custom.SQR(10));
+
+        int value = 100;
+        Custom.TrySQR(value);
+        System.out.println("after = " + value); // after = 100
+    }
+}
+```
+
+**Giải thích:** giá trị của biến `value` không bị thay đổi sau khi bị tác động bởi hàm `TrySQL` $\rightarrow$ Pass by value.
+
+> 💡 Vậy đối với các tham số là kiểu dữ liệu nguyên thủy (primitive data types) thì sẽ được truyền bằng giá trị (**pass by value**).
+
 
 
 ---
