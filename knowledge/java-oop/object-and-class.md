@@ -237,7 +237,7 @@ public class Math {
 
 #### Static method
 
-- Static method là phương thức không vận hành trên đối tượng. Hoặc không sử dụng tham số ẩn (implicit parameters).
+- Static method là phương thức không tác động đến đối tượng hoặc không sử dụng tham số ẩn (implicit parameters).
 - Gọi static method không có đối tượng.
 
 File `Problem.java`
@@ -284,7 +284,7 @@ public class Problem {
 
 #### Factory methods
 
-- Factory methods là các phương thức được sử dụng để xây dựng các object khác (ví dụ như xây dựng object khác hoặc object con).
+- `static` Factory methods là các phương thức được sử dụng để xây dựng các object khác (ví dụ như xây dựng object khác hoặc object con).
 
 ```java
 NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(); 

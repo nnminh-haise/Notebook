@@ -405,7 +405,77 @@ Bộ mã có tính prefix vì không có từ mã nào là thành phần mào đ
 
 Bộ mã không có tính prefix tối thiểu vì mào đầu $10$ có biến thể $100$ không là từ mà và không là thành phần mào của từ mã nào trong bộ mã.0.4 \times \log_2(\dfrac{1}{0.4})
 
+---
 
+## Mã Shannon - Famo
+
+- Bước 1: Sắp xếp các ký tự theo xác suất xuất hiện giảm dần.
+- Bước 2: Vẽ đường thẳng chia các ký tự thành hai nhóm sao cho tổng xác suất của hai nhóm là gần nhau nhất. Viết ký tự 0 cho nhóm ở trên đường thẳng và ký tự 1 cho các nhóm ở phía dưới đường thẳng.
+- Bước 3: Tiếp tục chia các nhóm có nhiều hơn 1 ký tự thành các nhóm nhỏ sử dụng phương pháp trong bước 2.
+- Bước 4: Khi tất cả các nhóm đêu chỉ chứa 1 ký tự, từ mã được tạo ra từ các bit đọc từ trái sang phải.
+
+***Ví dụ:***
+
+Nguồn có $6$ tin với xác suất xuất hiện là $0.35, 0.25, 0.2, 0.1, 0.05, 0.05$.
+
+***Giải:***
+
+- Sắp xếp xác suất xuất hiện theo thứ tự giảm dần: $0.35, 0.25, 0.2, 0.1, 0.05, 0.05$.
+- Chia thành hai nhóm: $\{0.35, 0.25\}$ và $\{0.2, 0.1, 0.05, 0.05\}$
+
+| Xác suất | Chia nhóm lần 1 | Chia nhóm lần 2 | Chia nhóm lần 3 | Chia nhóm lần 4 |
+| :---: | :---: | :---: | :---: | :---: |
+| 0.35 | 0 | 0 |  |  |
+|  |  | ------------------- |  |  |
+| 0.25 | 0 | 1 |  |  |
+|  | ------------------- | ------------------- |  |  |
+| 0.2 | 1 | 0 |  |  |
+|  |  | ------------------- |  |  |
+| 0.1 | 1 | 1 | 0 |  |
+|  |  |  | ------------------- |  |
+| 0.05 | 1 | 1 | 1 | 0 |
+|  |  |  |  | ------------------- |
+| 0.05 | 1 | 1 | 1 | 1 |
+
+- Entropy:
+
+$$
+H = 0.35 \times \log_2\left(\dfrac{1}{0.35}\right) + 0.25 \times \log_2\left(\dfrac{1}{0.25}\right) + 0.2 \times \log_2\left(\dfrac{1}{0.2}\right) + 0.1 \times \log_2\left(\dfrac{1}{0.1}\right) + 0.05 \times \log_2\left(\dfrac{1}{0.05}\right) + 0.05 \times \log_2\left(\dfrac{1}{0.05}\right) = 2.2589 \quad (bit)
+$$
+
+- Chiều dài trung bình:
+
+$$
+\overline{L} = 0.35 \times 2 + 0.25 \times 2 + 0.2 \times 2 + 0.1 \times 3 + 0.05 \times 4 + 0.05 \times 4 = 2.3 \quad (bit)
+$$
+
+- Hiệu suất mã hóa:
+
+$$
+\eta = \dfrac{H}{\overline{L}} \cdot 100\% = 98.21\%
+$$
+
+- Bộ mã có tính Prefix.
+- Xét tính Prefix tối thiểu. Các từ mã và biến thể của chúng:
+
+| - | - |
+| :--- | :--- |
+| 00 | Từ mã |
+| 01 | Từ mã |
+| 10 | Từ mã |
+| 11 | Từ mã |
+| 110 | Từ mã |
+| 111 | Mào đầu |
+| 1110 | Từ mã |
+| 1111 | Mào đầu |
+
+$\rightarrow$ Bộ mã có tính prefix tối thiểu.
+
+---
+
+## Mã Huffman cơ sở (Basic Huffman encoding)
+
+Hãy mã hóa nguồn có 6 ký tự có xác suất xuất hiện là: $0.35, 0.25, 0.2, 0.1, 0.05, 0.05$ bằng mã Huffman cơ sở.
 
 ---
 
