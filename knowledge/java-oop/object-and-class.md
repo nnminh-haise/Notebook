@@ -298,19 +298,51 @@ System.out.println(percentFormatter.format(x)); // prints 10
 
 - Mọi class có thể có một `Main` method để chạy code và thích hợp để chạy unit test.
 
-### Method parameters
+### Method parameters - Tham số trong phương thức
 
-File `Custom.java`
+Có hai loại tham số trong phương thức:
+
+- **Primitive type** (kiểu dữ liệu nguyên thủy): `int`, `bool`, `double` $\Rightarrow$ Các đối tượng là Primitive type sẽ được gọi bởi giá trị (**call by value**).
 
 ```java
-public class Custom {
-    public static int SQR(int value) {
-        return value * value;
+public class Main {
+    public static void sqr(int value) {
+        value = value * value;
     }
 
-    public static void TrySQR(int value) {
-        value *= value;
-        System.out.println("SQR = " + value);
+    public static void main(String[] args) {
+        int a = 10;
+        System.out.println("Value of a: " + a); // a = 10
+        sqr(a);
+        System.out.println("Value of a: " + a); // a = 10
+    }
+}
+```
+
+$\Rightarrow$ Giá trị của biến $a$ không thay đổi vì $a$ đang được gọi bởi giá trị.
+
+- **Object references**: Gồm các đối tượng tự định nghĩa $\Rightarrow$ Các đối tượng sẽ được gọi bởi tham chiếu của nó (**call by references**).
+
+File `Employee.java`
+
+```java
+public class Employee {
+    public Employee(int salary) {
+        this.salary = salary;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    private int salary;
+
+    public void ShowSalary() {
+        System.out.println("Employee salary: " + this.salary);
     }
 }
 ```
@@ -319,19 +351,204 @@ File `Main.java`
 
 ```java
 public class Main {
-    public static void main(String[] args) {
-        System.out.println(Custom.SQR(10));
 
-        int value = 100;
-        Custom.TrySQR(value);
-        System.out.println("after = " + value); // after = 100
+    public static void ModifySalary(Employee employee) {
+        int currentSalary = employee.getSalary();
+        employee.setSalary(currentSalary * 300);
+    }
+
+    public static void main(String[] args) {
+        Employee employee = new Employee(1000);
+        employee.ShowSalary(); // 1000
+        ModifySalary(employee);
+        employee.ShowSalary(); // 300000
     }
 }
 ```
 
-**Giải thích:** giá trị của biến `value` không bị thay đổi sau khi bị tác động bởi hàm `TrySQL` $\rightarrow$ Pass by value.
+$\Rightarrow$ Giá trị của field `salary` đã được thay đổi vì `Employee` là một đối tượng nên sẽ được gọi bởi tham chiếu (**call by references**).
 
-> 💡 Vậy đối với các tham số là kiểu dữ liệu nguyên thủy (primitive data types) thì sẽ được truyền bằng giá trị (**pass by value**).
+---
+
+### Object construction - Xây dựng đối tượng
+
+#### Overloading - Chồng chất
+
+- Một `class` có thể có nhiều constructor (*hàm khởi tạo*).
+- ***Nguyên tắc chồng chất***: Các phương thức phải có danh sách tham số khác nhau.
+
+#### Default field initialization - Khởi gán giá trị mặc định cho các trường
+
+- Các field sẽ được gán giá trị mặc định nếu như không xuất hiện một cách rõ ràng trong constructor.
+
+    1. Với `int` hoặc `double` mặc định bằng 0.
+    2. Với `bool` mặc định bằng `false`.
+    3. Với `Object references` mặc định bằng `null`.
+
+#### The constructor with no arguments - Phương thức khởi tạo không tham số
+
+- Phương thức khởi tạo không tham số được dùng để tạo ra một đối tượng mới với tất cả các trường đều được gán giá trị mặc định.
+
+#### Explicit field initialization - Khởi gán tường minh các trường
+
+- Gán giá trị cho trường khi định nghĩa `class`.
+- Việc gán giá trị cho trường sẽ được diễn ra trước khi constructor được thực thi.
+- Giá trị khởi tạo không nhất thiết phải là một hằng số.
+
+#### Parameter names - Tên tham số
+
+3 cách đặt tên cho tham số:
+
+- Đặt tên tham số với chữ cái đầu tiên của field tương ứng.
+- Tên tham số bằng tên của trường tương ứng với tiền tố `a` ở trong tên.
+- Tên tham số trùng với tên trường tương ứng.
+
+```java
+public Employee(String n, double s) {
+    name = n;
+    salary = s; 
+}
+
+// Hoặc
+
+public Employee(String aName, double aSalary) {
+    name = aName;
+    salary = aSalary; 
+}
+
+// Hoặc
+
+public Employee(String name, double salary) {
+    this.name = name;
+    this.salary = salary; 
+}
+```
+
+#### Calling other constructor
+
+- Có thể gọi constructor khác bên trong constructor.
+
+```java
+public Employee(String name, double salary) {
+    this.name = name;
+    this.salary = salary; 
+}
+
+public Employee(double s) {
+    // calls Employee(String, double)
+    this("Employee #" + nextId, s); 
+    nextId++;
+}
+```
+
+#### Initialization blocks - Khối khởi tạo
+
+- Hai cách khởi tạo giá trị cho các trường:
+
+    1. Khởi tạo giá trị trong constructor.
+    2. Gán giá trị khi định nghĩa `class`.
+
+- `class` declarations có thể chứa khối code bất kì.
+- Những khối code này sẽ được thực thi ngay khi một object thuộc `class` đó được khởi tạo.
+- Initialization blocks (khối khởi tạo) sẽ được thực thi trước rồi sẽ thực thi các constructor.
+
+***Quá trình xây dựng:***
+
+- Các field sẽ được gán giá trị mặc định tương ứng.
+- Các khối lệnh thực hiện việc gán giá trị mặc định cho các `field` sẽ được thực thi dựa trên thứ tự xuất hiện theo định nghĩa `class`.
+- `static field`:
+    1. Có giá trị khởi tạo cụ thể.
+    2. Sử dụng `static initialization block` được thực thi khi đối tượng được khởi tạo.
+    ```java
+    static { // static initialization block
+        Random generator = new Random();
+        nextId = generator.nextInt(10000);
+    }
+    ```
+
+#### Object desctruction and finalize method
+
+- Java tự động xử lí các dữ liệu rác khi không được sử dụng nên Java không hỗ trợ destructor (phương thức hủy).
+- Tài nguyên cần được tái xác định và tái sử dụng khi không được sử dụng nữa $\rightarrow$ `finalize method`.
+- `finalized method` sẽ được gọi trước garbage collector.
+- Nếu tài nguyên cần được đóng lại khi không sử dụng nữa thì có thể thực hiện như sau:
+
+    1. `close`
+    2. `try - with - resource statement`.
+
+---
+
+## Packages
+
+- Các `class` có thể được nhóm với nhau trong một `package`.
+- Packages có các ưu điểm:
+
+    1. Quản lí code
+    2. Phân biệt code của bản thân với các thư viện khác.
+    3. Đảm bảo tính duy nhất của tên `class`.
+
+### Class importation
+
+Một `class` có thể:
+
+- Sử dụng tất cả các `class` khác có trong package đó.
+- Sử dụng tất cả các public `class` ở những chỗ khác.
+
+    1. Thêm tên đầy đủ của package trước đầu những `class` sử dụng.
+    2. Sử dụng câu lệnh `import`.
+
+### Static imports
+
+- Câu lệnh `import` cho phép import các static field và method.
+- Ví dụ: có thể sử dụng các static field và method của `System` và bỏ qua tiền tố `System`:
+
+```java
+import static java.lang.System.*;
+out.println("Goodbye, World!"); // i.e., System.out 
+exit(0); // i.e., System.exit
+```
+
+### Addition of a Class into a Package - Thêm class vào package
+
+- Để thêm một `class` vào một package thì ta sẽ đặt tên của package vào đầu source file.
+
+```java
+package com.horstmann.corejava;
+public class Employee {
+    ... 
+}
+```
+
+- Mặc định các `class` sẽ được thêm vào package mặc định.
+- Đặt source file vào những thư mục con phù hợp với tên đầy đủ của package.
+- Ví dụ: Tất cả các file của package `com.horstmann.corejava` nên được nằm trong thư mục: `com/horstmann/corejava`.
+
+![Package folder tree](./img/package-name.png)
+
+### Package Scope - Phạm vi hoạt động của package
+
+Access modifiers: public, private
+
+- `public`: có thể được sử dụng bởi các `class` khác.
+- `private`: chỉ được sử dụng bởi `class` định nghĩa.
+- `default`: có thể được sử dụng bởi các `method` cùng chung package.
+
+---
+
+## The class path - Địa chỉ của lớp
+
+- Các file và các thư mục con có thể được chứa trong file `JAR` (Java archive).
+- Để chia sẽ các `class` giữa các chương trình khác nhau thực hiện như sau:
+
+    1. Thêm `class` vào thư mục.
+    2. Thêm file `JAR` vào thư mục.
+    3. Thiết lập địa chỉ của `class`: là tập hợp các địa chỉ lưu trữ các file.
+
+        - Với Linux: `/home/user/classdir:.:/home/user/archives/archive.jar`.
+        - Với Windows: `c:\classdir;.;c:\archives\archive.jar`.
+        - Địa chỉ gốc: `/home/user/classdir` hoặc `c:\classdir`
+        - Địa chỉ thư mục hiện tại (đang làm việc/trong console): `.`
+        - Địa chỉ file `JAR`: `/home/user/archives/archive.jar` hoặc `c:\archives\archive.jar`
 
 
 
