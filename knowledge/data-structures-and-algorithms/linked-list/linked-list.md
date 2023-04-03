@@ -3,6 +3,27 @@
 
 ---
 
+<!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=6 orderedList=true} -->
+
+<!-- code_chunk_output -->
+
+1. [Kiến thức yêu cầu](#kiến-thức-yêu-cầu)
+2. [Mở đầu về danh sách liên kết](#mở-đầu-về-danh-sách-liên-kết)
+3. [Xây dựng danh sách liên kết](#xây-dựng-danh-sách-liên-kết)
+    1. [Xây dựng từng node của danh sách](#xây-dựng-từng-node-của-danh-sách)
+    2. [Initialize - Module khởi tạo.](#initialize---module-khởi-tạo)
+    3. [IsEmpty - Module kiểm tra danh sách rỗng](#isempty---module-kiểm-tra-danh-sách-rỗng)
+    4. [Traversal - Module duyệt danh sách](#traversal---module-duyệt-danh-sách)
+    5. [Search - Module tìm kiếm phần tử dựa trên `info`](#search---module-tìm-kiếm-phần-tử-dựa-trên-info)
+    6. [InsertFirst - Module thêm phần tử có nội dung `info` vào đầu danh sách](#insertfirst---module-thêm-phần-tử-có-nội-dung-info-vào-đầu-danh-sách)
+    7. [InsertLast - Module thêm phần tử có `info` vào cuối danh sách](#insertlast---module-thêm-phần-tử-có-info-vào-cuối-danh-sách)
+    8. [InsertAfter - Thêm phần tử có nội dung `info` vào sau phần tử `p` trong danh sách](#insertafter---thêm-phần-tử-có-nội-dung-info-vào-sau-phần-tử-p-trong-danh-sách)
+
+<!-- /code_chunk_output -->
+
+
+---
+
 ## Kiến thức yêu cầu
 
 - Kiến thức cơ bản ngôn ngữ lập trình `C++`.
@@ -32,7 +53,12 @@ IDE sử dụng: Clion hoặc Visual Studio. Các bạn cũng có thể sử d�
 
 ## Mở đầu về danh sách liên kết
 
-![Ví dụ về Linked list (danh sách liên kết)](./img/linked-list.png)
+```mermaid
+flowchart LR
+
+0[2] --> 1[3] --> 2[1] --> 3[7] --> 4[8] --> 5[10] --> 6[6] --> 7[4] --> 8[5] --> NULL
+
+```
 
 Danh sách liên kết về bản chất là một danh sách dùng để lưu trữ dữ liệu. Song, khác với danh sách tuyến tính thì danh sách liên kết có những ưu điểm riêng biệt khiến cho danh sách liên kết có nhiều điểm mạnh hơn so với danh sách tuyến tính trong một số trường hợp cụ thể.
 
@@ -190,6 +216,8 @@ Ta sử dụng vòng lặp `for` để duyêt qua danh sách. Ta sẽ dừng l�
 
 Một phép toán thường thấy khi làm việc với cơ sở dữ liệu là phép tìm kiếm dữ liệu cần thiết. Ở đây, ta sẽ xây dựng một module tìm kiến trong danh sách phần tử có nội dung `info` và trả về con trỏ của phần tử đó nếu có, hoặc trả về `NULL` nếu không.
 
+`LinkedList.h`
+
 ```cpp
 namespace LinkedList {
     Pointer Search(const Pointer& First, int info);
@@ -346,12 +374,14 @@ Bên cạnh việc thêm phần tử vào đầu hoặc cuối danh sách thì v
 
 Để giải quyết vấn đề này ta sẽ sử dụng thêm thuật toán tìm kiếm. Ví dụ, ta có một danh sách như sau:
 
+***Hình vẽ minh họa quá trình thêm một phần tử vào sau phần tử `p`:***
+
 ```mermaid
-flowchart LR
-
-A[10] --> B[11] --> C[12] --> D[13] --> E[15] --> F[16] --> G[NULL]
-
-P[P] --> D
+flowchart TB
+    subgraph one [Original]
+        direction LR
+        A0[10] ==> B0[11] ==> C0[12] ==> D0[13] ==> F0[15] ==> G0[16] ==> Z0[NULL]
+    end
 ```
 
 Giả sử ta cần thêm một phần tử có nội dung $14$ vào sau phần tử có nội dung là $13$ ta sẽ làm như sau:
@@ -399,4 +429,45 @@ void LinkedList::InsertAfter(LinkedList::Pointer &First, LinkedList::Pointer& p,
     2. Dùng từ khóa `new` để tạo ra con trỏ `newNode` trỏ đến phần tử mới sẽ được thêm vào danh sách. `newNodw` sẽ có `info` bằng với `value` và `next` sẽ trỏ đến `q`.
     3. Ta sẽ xóa bỏ liên kết từ `p` đến `q` và thay bằng liên kết từ `p` đến `newNode` bằng câu lệnh `p->next = newNode`.
 
+**Hình vẽ minh họa quá trình thêm một phần tử vào sau phần tử `p`:**
 
+```mermaid
+flowchart TD
+    subgraph one [Original]
+        direction LR
+        A0[10] ==> B0[11] ==> C0[12] ==> D0[13] ==> F0[15] ==> G0[16] ==> Z0[NULL]
+    end
+
+    subgraph two [Step 1 and 2]
+        direction LR
+        A[10] ==> B[11] ==> C[12] ==> D[13] ==> F[15] ==> G[16] ==> Z[NULL]
+
+        E[14]
+
+        E -- Step 1 --> F
+
+        D -- Step 2 --> E
+    end
+
+    subgraph three [Step 3]
+        direction LR
+            1A[10] ==> 1B[11] ==> 1C[12] ==> 1D[13] x-. Step 3 .-x 1F[15] ==> 1G[16] ==> 1Z[NULL]
+
+            1E[14]
+
+            1E -- Step 1 --> 1F
+
+            1D -- Step 2 --> 1E
+    end
+
+    subgraph final [Final list]
+        direction LR
+            2A[10] ==> 2B[11] ==> 2C[12] ==> 2D[13] ==> 2E[14] ==> 2F[15] ==> 2G[16] ==> 2Z[NULL]
+    end
+
+    one --> two --> three --> final
+```
+
+---
+
+> *Đây là handbook của mình dựa trên quá trình học môn Cấu trúc dữ liệu và Giải thuật ở Học viện Cơ sở do thầy Lưu Nguyễn Kì Thư giảng dạy. Lưu ý: đây không phải tài liệu giáo khoa mà là tài liệu tham khảo do mình biên soạn và tóm tắt lại.*

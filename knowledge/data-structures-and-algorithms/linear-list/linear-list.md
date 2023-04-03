@@ -29,7 +29,7 @@ Bản chất, một mảng một chiều $n$ phần tử là một **tập hợp
 
 ## Declaration - Khai báo
 
-File `LinearList.h`:
+`LinearList.h`
 
 ```cpp
 namespace LinearList {
@@ -46,7 +46,7 @@ namespace LinearList {
 
 *Danh sách tuyến tính được khai báo là danh sách chứa các số nguyên được khai báo theo dạng cấp phát tĩnh.*
 
-File `LinearList.cpp`:
+`LinearList.cpp`
 
 ```cpp
 namespace LinearList {
@@ -59,7 +59,7 @@ namespace LinearList {
 }
 ```
 
-File `main.cpp`:
+`main.cpp`
 
 ```cpp
 #include <iostream>
@@ -75,11 +75,11 @@ int main() {
 
 *Trong hàm `main()` tạo ra một danh sách tuyến tính là danh sách các số nguyên tố.*
 
-## Initialize - Phương thức khởi tạo
+## Initialize - Module khởi tạo
 
 Phương thức khởi tạo sẽ khởi tạo một danh sách có kích thước và giá trị khởi tạo cho mọi phần tử theo yêu cầu.
 
-File `LinearList.h`:
+`LinearList.h`
 
 ```cpp
 namespace LinearList {
@@ -87,7 +87,7 @@ namespace LinearList {
 }
 ```
 
-File `LinearList.cpp`:
+`LinearList.cpp`
 
 ```cpp
 namespace LinearList {
@@ -100,7 +100,7 @@ namespace LinearList {
 }
 ```
 
-File `main.cpp`:
+`main.cpp`
 
 ```cpp
 #include <iostream>
@@ -114,7 +114,7 @@ int main() {
 }
 ```
 
-## IsEmpty & IsFull - Phương thức kiểm tra rỗng và phương thức kiểm tra đầy
+## IsEmpty & IsFull - Module kiểm tra rỗng và phương thức kiểm tra đầy
 
 Danh sách tuyến tính về bản chất là một mảng một chiều, do vậy mà cố định về kích thước của danh sách. Do đó, cần phải kiểm soát trạng thái của danh sách trước khi thực hiện các thao tác khác.
 
@@ -125,7 +125,7 @@ Ta quy ước:
 3. `MAX_SIZE` là kích thước được quy định mặc định của mảng một chiều.
 4. Chỉ số (*vị trí*) của phần tử cuối cùng của danh sách là `numberOfElement - 1`.
 
-File `LinearList.h`:
+`LinearList.h`
 
 ```cpp
 namespace LinearList {
@@ -135,7 +135,7 @@ namespace LinearList {
 }
 ```
 
-File `LinearList.cpp`:
+`LinearList.cpp`
 
 ```cpp
 namespace LinearList {
@@ -149,13 +149,13 @@ namespace LinearList {
 }
 ```
 
-## Insert - Phương thức thêm phần tử vào danh sách
+## Insert - Module thêm phần tử vào danh sách
 
 Phương thức sẽ thực hiện thao tác thêm một phần tử vào danh sách tại một vị trí cho phép bất kì.
 
 Độ phức tạp thời gian của thuật toán được sử dụng là $O(n)$.
 
-File `LinearList.h`:
+`LinearList.h`
 
 ```cpp
 namespace LinearList {
@@ -163,7 +163,7 @@ namespace LinearList {
 }
 ```
 
-File `LinearList.cpp`:
+`LinearList.cpp`
 
 ```cpp
 namespace LinearList {
@@ -196,11 +196,11 @@ Phương thức sẽ trả về giá trị `true` nếu thêm phần tử thành
 
 **Lưu ý:** nếu giá trị được thêm vào nằm ở đầu hoặc giữa danh sách thì các phần tử khác sẽ dịch sang phải một đơn vị tạo khoảng trống cho phần tử mới sẽ được thêm vào.
 
-## Remove - Phương thức loại bỏ phần tử khỏi danh sách
+## Remove - Module loại bỏ phần tử khỏi danh sách
 
 Phương thức cho phép loại bỏ một phần tử tại một vị trí tồn tại trong danh sách. Các phần tử đứng sau phần tử được xóa (*nếu có*) sẽ dịch trái (*dồn lên*) để khỏa lấp vị trí bị trống.
 
-File `LinearList.h`:
+`LinearList.h`
 
 ```cpp
 namespace LinearList {
@@ -208,7 +208,7 @@ namespace LinearList {
 }
 ```
 
-File `LinearList.cpp`:
+`LinearList.cpp`
 
 ```cpp
 namespace LinearList {
@@ -236,11 +236,11 @@ Phương thức nhận:
 
 Phương thức sẽ trả về giá trị `true` nếu xóa thành công phần tử cần xóa và ngược lại.
 
-## Search - Phương thức tìm kiếm phần tử trong danh sách
+## Search - Module tìm kiếm phần tử trong danh sách
 
 Phương thức cho phép tìm kiếm vị trí đầu tiên xuất hiện trong danh sách. Nếu không tồn tại phần tử cần tìm thì sẽ trả về giá trị $-1$.
 
-File `LinearList.h`:
+`LinearList.h`
 
 ```cpp
 namespace LinearList {
@@ -248,7 +248,7 @@ namespace LinearList {
 }
 ```
 
-File `LinearList.cpp`:
+`LinearList.cpp`
 
 ```cpp
 namespace LinearList {
