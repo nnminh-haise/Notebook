@@ -553,7 +553,7 @@ Module trả về giá trị kiểu `int` với ý nghĩa là số lượng ph�
 - Sau đó, vì để tránh mất mát dữ liệu khi xóa phần tử, thì ta sẽ tạo liên kết từ phần tử hiện tại đến những phần tử đứng sau phần tử cần xóa.
 - Cuối cùng, ta dùng từ khóa `delete` để xóa `deleteNode` và trả về $1$ vì chỉ xóa duy nhất một phần tử.
 
-### InsertLast - Module xóa phần tử ở cuối danh sách
+### DeleteLast - Module xóa phần tử ở cuối danh sách
 
 Vị trí cuối cùng có thể xóa nếu cần là vị trí cuối danh sách. Khác với danh sách tuyến tính, việc xóa phần tử cuối cùng trong danh sách liên kết sẽ cần phải thực hiện như sau.
 
