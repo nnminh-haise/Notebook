@@ -3,55 +3,63 @@
 
 ---
 
-<!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=6 orderedList=true} -->
+<!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=6 orderedList=false} -->
 
 <!-- code_chunk_output -->
 
-1. [Kiến thức yêu cầu](#kiến-thức-yêu-cầu)
-2. [Mở đầu về danh sách liên kết](#mở-đầu-về-danh-sách-liên-kết)
-3. [Xây dựng danh sách liên kết](#xây-dựng-danh-sách-liên-kết)
-    1. [Xây dựng từng node của danh sách](#xây-dựng-từng-node-của-danh-sách)
-    2. [Initialize - Module khởi tạo.](#initialize---module-khởi-tạo)
-    3. [IsEmpty - Module kiểm tra danh sách rỗng](#isempty---module-kiểm-tra-danh-sách-rỗng)
-    4. [Traversal - Module duyệt danh sách](#traversal---module-duyệt-danh-sách)
-    5. [Search - Module tìm kiếm phần tử dựa trên `info`](#search---module-tìm-kiếm-phần-tử-dựa-trên-info)
-    6. [InsertFirst - Module thêm phần tử có nội dung `info` vào đầu danh sách](#insertfirst---module-thêm-phần-tử-có-nội-dung-info-vào-đầu-danh-sách)
-    7. [InsertLast - Module thêm phần tử có `info` vào cuối danh sách](#insertlast---module-thêm-phần-tử-có-info-vào-cuối-danh-sách)
-    8. [InsertAfter - Thêm phần tử có nội dung `info` vào sau phần tử `p` trong danh sách](#insertafter---thêm-phần-tử-có-nội-dung-info-vào-sau-phần-tử-p-trong-danh-sách)
+- [Kiến thức yêu cầu](#kiến-thức-yêu-cầu)
+  - [Kiến thức nền tảng](#kiến-thức-nền-tảng)
+  - [Khái niệm nâng cao sẽ xuất hiện](#khái-niệm-nâng-cao-sẽ-xuất-hiện)
+  - [Một số điểm chú ý khác](#một-số-điểm-chú-ý-khác)
+- [Mở đầu về danh sách liên kết](#mở-đầu-về-danh-sách-liên-kết)
+- [Xây dựng danh sách liên kết](#xây-dựng-danh-sách-liên-kết)
+  - [Xây dựng từng node của danh sách](#xây-dựng-từng-node-của-danh-sách)
+  - [Initialize - Module khởi tạo.](#initialize---module-khởi-tạo)
+  - [IsEmpty - Module kiểm tra danh sách rỗng](#isempty---module-kiểm-tra-danh-sách-rỗng)
+  - [Traversal - Module duyệt danh sách](#traversal---module-duyệt-danh-sách)
+  - [Search - Module tìm kiếm phần tử dựa trên `info`](#search---module-tìm-kiếm-phần-tử-dựa-trên-info)
+  - [InsertFirst - Module thêm phần tử có nội dung `info` vào đầu danh sách](#insertfirst---module-thêm-phần-tử-có-nội-dung-info-vào-đầu-danh-sách)
+  - [InsertLast - Module thêm phần tử có `info` vào cuối danh sách](#insertlast---module-thêm-phần-tử-có-info-vào-cuối-danh-sách)
+  - [InsertAfter - Thêm phần tử có nội dung `info` vào sau phần tử `p` trong danh sách](#insertafter---thêm-phần-tử-có-nội-dung-info-vào-sau-phần-tử-p-trong-danh-sách)
+  - [DeleteFirst - Module xóa phần tử đứng đầu danh sách](#deletefirst---module-xóa-phần-tử-đứng-đầu-danh-sách)
+  - [DeleteAfter - Module xóa phần tử đứng sau phần tử `p`](#deleteafter---module-xóa-phần-tử-đứng-sau-phần-tử-p)
+  - [InsertLast - Module xóa phần tử ở cuối danh sách](#insertlast---module-xóa-phần-tử-ở-cuối-danh-sách)
+  - [DeleteInfo - Module xóa phần tử có nội dung `info`](#deleteinfo---module-xóa-phần-tử-có-nội-dung-info)
 
 <!-- /code_chunk_output -->
-
 
 ---
 
 ## Kiến thức yêu cầu
 
-- Kiến thức cơ bản ngôn ngữ lập trình `C++`.
-- Khái niệm pointer (con trỏ).
+> *Đây là một số kiến thức yêu cầu do chính bản thân mình đặt ra để việc tiếp cận với bài viết trở nên thuận tiện hơn vì nhiều lí do. Các bạn có thể bỏ qua phần này, song việc tiếp cận bài viết có thể sẽ trở nên khó khăn, mình nghĩ bạn nên cân nhắc.*
+
+### Kiến thức nền tảng
+
+- Kiến thức cơ bản ngôn ngữ lập trình. Ở đây mình chọn `C++`.
+- Khái niệm `pointer` (con trỏ).
 - Khái niệm `struct` và `class`.
-- Khái niệm `function prototype` hay `function declaration` và `function definition`.
+- Khái niệm `function prototype` hay `function declaration` và `function definition` trong C++.
 - Phân biệt giữa `procedure` và `function` (thủ tục và hàm).
 
-Một số khái niệm sẽ xuất hiện thêm (khuyến khích tìm hiểu):
+### Khái niệm nâng cao sẽ xuất hiện
 
 - Khái niệm `namespace` trong `C++`.
-- Khái niệm `header` trong `C++`.
+- Khái niệm `header file` trong `C++`.
 - Khái niệm `reference` (tham chiếu) trong `C++`.
 
 IDE sử dụng: Clion hoặc Visual Studio. Các bạn cũng có thể sử dụng VS Code. Song vì VS Code không hỗ trợ Linker nên việc áp dụng hoàn toàn theo Handbook sẽ có đôi chút khác, các bạn nên lưu ý.
 
-***Lưu ý:*** 
+### Một số điểm chú ý khác
 
-- Mình sẽ mặc định các bạn đọc đã biết và hiểu các kiến thức yêu cầu ở trên để việc học và áp dụng xây dựng cấu trúc dữ liệu được hiệu quả hơn.
-- Các phần giải thích code sẽ chỉ giái thích:
-
-    1. Chức năng của hàm.
-    2. Ý nghĩa của hàm (hàm thực hiện chức năng vì mục đích gì).
-    3. Lí do truyền tham số và ý nghĩa của từng loại tham số.
+1. Mình sử dụng IDE Visual Studio để viết code với ngôn ngữ `C++`.
+2. Mình không viết logic của code ở trong `header file` (file `.h`) vì cách hoạt động của `header file` là nội dung của nó sẽ được sao chép lại vào nơi gọi nó. Do đó để tránh việc các `method` bị định nghĩa nhiều lần dẫn đến lỗi thì mình sẽ viết `function declaration` ở `header file` còn `function definition` sẽ được viết trong `.cpp` file có tên tương ứng.
+3. Mình sử dụng `namespace` để tránh việc khi các bạn sử dụng code của mình trong các project hay bài tập lớn tránh bị trùng tên biến. Mình cũng khuyến khích các bạn làm điều tương tự khi học, khi làm bài tập lớn, project cá nhân hay bài tập nhóm.
 
 ---
 
 ## Mở đầu về danh sách liên kết
+
 
 ```mermaid
 flowchart LR
@@ -62,7 +70,7 @@ flowchart LR
 
 Danh sách liên kết về bản chất là một danh sách dùng để lưu trữ dữ liệu. Song, khác với danh sách tuyến tính thì danh sách liên kết có những ưu điểm riêng biệt khiến cho danh sách liên kết có nhiều điểm mạnh hơn so với danh sách tuyến tính trong một số trường hợp cụ thể.
 
-Danh sách liên kết là một danh sách nên Là một tập hợp các phần tử cùng kiểu dữ liệu. Song, khác với danh sách tuyến tính thì:
+Danh sách liên kết là một **"danh sách"** nên nó cũng là một tập hợp các phần tử cùng kiểu dữ liệu. Song, khác với danh sách tuyến tính thì:
 
 - Xét về mặt địa chỉ, thì các phần tử trong danh sách liên kết không nhất thiết phải liên tiếp nhau.
 - Mối quan hệ giữa hai phần tử được xác định bởi "liên kết", là điều khiến danh sách liên kết đặc biệt.
@@ -81,7 +89,7 @@ Một số điểm cần lưu ý về danh sách liên kết:
 
 > *Trong khuôn khổ bài viết, mình sẽ xây dựng danh sách liên kết đơn, mỗi phần tử chỉ sở hữu duy nhất một liên kết dẫn đến phần tử kế tiếp trong danh sách. Do vậy, từ phần sau của tài liệu, khi nói đến danh sách liên kết (hay danh sách), ta hiểu đó là danh sách liên kết đơn!*
 
-***Mục tiêu:*** Xây dựng danh sách liên kết chứa các số nguyên kiểu `int`.
+***Mục tiêu:*** Ta sẽ xây dựng cấu trúc dữ liệu danh sách liên kết chứa các phần tử có kiểu dữ liệu là số nguyên kiểu `int`.
 
 ***Quy ước:***
 
@@ -468,6 +476,200 @@ flowchart TD
     one --> two --> three --> final
 ```
 
+### DeleteFirst - Module xóa phần tử đứng đầu danh sách
+
+Trong quá trình làm việc với danh sách thì thao tác loại bỏ phần tử (hay còn gọi là xóa) là một thao tác thường gặp. Ở đây mình cùng nói đến thao tác xóa đơn giản nhất là xóa phần tử đầu tiên của danh sách.
+
+`LinkedList.h`
+
+```cpp
+namespace LinkedList {
+    bool DeleteFirst(Pointer& First);
+}
+```
+
+`LinkedList.cpp`
+
+```cpp
+bool LinkedList::DeleteFirst(LinkedList::Pointer& First) {
+    if (LinkedList::IsEmpty(First)) {
+        return 0;
+    }
+
+    LinkedList::Pointer p = First;
+    First = p->next;
+    delete p;
+    return 1;
+}
+```
+
+**Giải thích Code:**
+
+Module sẽ trả về `true` hoặc `false` tương ứng với việc module đã xóa thành công hoặc không.
+
+Trước hết, ta sẽ kiểm tra, nếu danh sách rỗng, thì ta sẽ không cần xóa phần tử nào, nghĩa là ta đã không xóa thành công, nên trả về `false`.
+
+- Module nhận vào một tham số hình thức biến `First` là phần tử đại diện cho dãy cũng là phần tử đầu tiên của dãy. Vì danh sách sẽ bị biến đổi, cụ thể là phần tử đầu tiên của danh sách, cũng chính là `First`.
+- Đầu tiên, ta tạo một con trỏ `p` chứa phần tử đầu tiên của danh sách, nghĩa là chứa `First`.
+- Khi xóa phần tử đầu tiên trong danh sách, thì phần tử kế tiếp đứng sau nó sẽ trở thành phần tử đầu danh sách mới. Do đó, ta cần cập nhật lại `First` để `First` trỏ đến phần tử đầu tiên mới.
+- Cuối cùng, ta dùng `delete` để xóa con trỏ `p`, lúc này đang chứa địa chỉ của phần tử cần xóa. Lúc này, ta đã hoàn toàn xóa đi phần tử đầu tiên khỏi danh sách và `First` cũng đã lưu trữ được phần tử đầu tiên mới của danh sách rồi trả về `true` để đánh dấu xóa thành công.
+
+Ở một số trường hợp, mình sẽ có thể thay đổi giá trị trả về từ `true/false` thành `int` với ý nghĩa là số lượng phần tử đã xóa khỏi danh sách, bạn có thể lưu ý điểm này để ứng dụng vào bài tập.
+
+### DeleteAfter - Module xóa phần tử đứng sau phần tử `p`
+
+Trong khi xử lí dữ liệu, ta có thể gặp một số thao tác cần xóa một phần tử đứng sau một phần tử khác, đối với danh sách tuyến tính, ta sẽ thực hiện như sau.
+
+`LinkedList.h`
+
+```cpp
+namespace LinkedList {
+    int DeleteAfter(Pointer target);
+}
+```
+
+`LinkedList.cpp`
+
+```cpp
+int LinkedList::DeleteAfter(Pointer target) {
+    if (target == nullptr || target->next == nullptr) {
+        return 0;
+    }
+
+    LinkedList::Pointer deleteNode = target->next;
+    target->next = deleteNode->next;
+    delete deleteNode;
+    return 1;
+}
+```
+
+**Giải thích Code:**
+
+Module trả về giá trị kiểu `int` với ý nghĩa là số lượng phần tử đã loại bỏ khỏi danh sách.
+
+- Module nhận vào một tham biến là con trỏ mà phần tử đứng sau nó sẽ bị xóa.
+- Trước tiên, cần loại bỏ ra những trường hợp không thể thực hiện quá trình xóa như danh sách rỗng, hoặc danh sách chỉ có một phần tử. Khi đó, ta không xóa phần tử nào, trả về `false`.
+- Tiếp theo, ta lưu con trỏ của phần tử cần xóa là `deleteNode` là phần tử đứng sau phần tử hiện tại lại.
+- Sau đó, vì để tránh mất mát dữ liệu khi xóa phần tử, thì ta sẽ tạo liên kết từ phần tử hiện tại đến những phần tử đứng sau phần tử cần xóa.
+- Cuối cùng, ta dùng từ khóa `delete` để xóa `deleteNode` và trả về $1$ vì chỉ xóa duy nhất một phần tử.
+
+### InsertLast - Module xóa phần tử ở cuối danh sách
+
+Vị trí cuối cùng có thể xóa nếu cần là vị trí cuối danh sách. Khác với danh sách tuyến tính, việc xóa phần tử cuối cùng trong danh sách liên kết sẽ cần phải thực hiện như sau.
+
+`LinkedList.h`
+
+```cpp
+namespace LinkedList {
+    bool DeleteLast(Pointer& First);
+}
+```
+
+`LinkedList.cpp`
+
+```cpp
+bool LinkedList::DeleteLast(LinkedList::Pointer &First) {
+    if (LinkedList::IsEmpty(First)) {
+        return false;
+    }
+
+    if (First->next == nullptr) {
+        delete First;
+        First = nullptr;
+        return true;
+    }
+
+    LinkedList::Pointer Last = First;
+    for (; Last->next->next != nullptr; Last = Last->next);
+    delete Last->next;
+    Last->next = nullptr;
+    return true;
+}
+```
+
+**Giải thích Code:**
+
+Module nhận vào một tham số hình thức biến `First` có ý nghĩa là phần tử đầu tiên của danh sách, quản lí cả danh sách.
+
+Trước hết, ta cần xử lí một số trường hợp đặc biệt sau:
+
+1. Nếu danh sách rỗng thì ta sẽ không xóa được, lúc này ta trả về `false` vì không xóa được phần tử nào.
+2. Nếu danh sách chỉ có 1 phần tử, ta sẽ xóa `First` rồi gán `nullptr` cho `First` để đánh dấu là danh sách rỗng. Rồi trả về `true` vì đã xóa đi phần tử cuối cùng.
+
+Sau khi bỏ đi các trường hợp đặc biệt, ta chắc chắn danh sách sẽ có tối thiểu $2$ phần tử trở lên, khi đó, ta sẽ thực hiện như sau:
+
+- Đầu tiên, ta gọi một con trỏ `Last` là phần tử cuối cùng của danh sách, khởi tạo tại phần tử `First`.
+- Sau đó, ta sẽ duyệt từ đầu đến phần tử kế cuối của danh sách, lúc này, ta sẽ có `Last` là phần tử kế cuối của danh sách, và `Last->next` là phần tử cuối của danh sách.
+- Lúc này ta sử dụng `delete` để xóa `Last->next` và gán `nullptr` cho `Last->next` vì lúc này nó trở thành phần tử cuối của danh sách.
+
+### DeleteInfo - Module xóa phần tử có nội dung `info`
+
+Trong những bài toán làm việc với dữ liệu thì việc xóa phần tử có nội dung theo yêu cầu là một bài toán thường gặp, với danh sách liên kết ta sẽ giải quyết bài toán đó như sau:
+
+`LinkedList.h`
+
+```cpp
+namespace LinkedList {
+    int DeleteInfo(Pointer& First, int info);
+}
+```
+
+`LinkedList.cpp`
+
+```cpp
+int LinkedList::DeleteInfo(LinkedList::Pointer &First, int info) {
+    if (LinkedList::IsEmpty(First)) {
+        return 0;
+    }
+
+    if (First->info == info) {
+        LinkedList::DeleteFirst(First);
+        return 1;
+    }
+
+    LinkedList::Pointer p = First;
+    for (; p->next != nullptr && p->next->info != info; p = p->next);
+
+    if (p->next == nullptr) {
+        return 0;
+    }
+
+    LinkedList::DeleteAfter(p);
+
+    return 1;
+}
+```
+
+**Giải thích Code:**
+
+Module sẽ xóa phần tử đầu tiên có nội dung `info` theo yêu cầu và trả về `true/false` tương ứng với việc xóa thành công hoặc không.
+
+Module nhận hai tham số, trong đó, tham số đầu tiên là tham số hình thức biến `First` đại diện cho danh sách, tham số thứ hai là `info` là nội dung của phần tử cần xóa.
+
+Trước tiên, như mọi khi, ta cần xử lí trước một số các trường hợp đặc biệt như sau:
+
+1. Nếu danh sách rỗng thì ta sẽ không xóa phần tử nào và trả về `false`.
+2. Nếu phần tử đầu tiên là phần tử cần tìm, ta sẽ thực hiện thuật toán `DeleteFirst()` đã nói ở trên.
+
+Sau khi giải quyết các trường hợp đặc biệt, ta sẽ thực hiện xóa phần tử như sau:
+
+- Gọi `p` là con trỏ trỏ đến phần tử đứng trước phần tử cần xóa. Ta khởi tạo `p = First`.
+- Ta dùng vòng lặp `for` (hoặc `while`) và duyệt đến khi gặp phần tử cuối cùng hoặc `p->next` (là phần tử kế tiếp của `p` đang xét hiện tại) có nội dung là `info`. Lúc này, xảy ra một trong hai trường hợp sau:
+
+    1. Nếu `p->next->info` bằng với `info`, có nghĩa là ta đang xét nội dung của phần tử đứng sau `p` có phải là phần tử ta đang tìm kiếm hay không? Nếu phải, thì vòng lặp ta dừng lại và sử dụng thuật toán `DeleteAfter()` để xóa đi phần tử đứng sau `p`, là phần tử `p->next`, cũng chính là phần tử cần xóa.
+    2. Nếu `p->next` bằng với `nullptr` thì `p` chính là phần tử cuối cùng, lúc này, vì cách ta kiểm tra phần tử liền sau có phải là phần tử cần tìm hay không nên ta khẳng định ta không tìm được phần tử cần xóa và trả về `false`.
+
+***Chứng minh vì sao trường hợp $2$ không cần xét điều kiện `p->info == info`:***
+
+Để chứng mình điều này, mình sẽ áp dụng phương pháp phản chứng như sau:
+
+- Mình giả thuyết, vòng lặp dừng ở điều kiện `p->next == nullptr` là phần tử cuối cùng của danh sách và ta cần kiểm tra điều kiện `p->info == info`, nghĩa là phần tử cuối cùng của danh sách cũng là phần tử cần tìm.
+- Gọi `u` là phần tử liền trước `p`, nghĩa là `u->next == p`. Theo giả thuyết của mình ở trên, ta sẽ có: `u->next->info == info`, vì giả thuyết ta có `p->info == info`.
+- Vì `u` đứng trước `p`, nên ta sẽ duyệt qua `u` trước, rồi mới duyệt đến `p`. Lúc này, trong lúc duyệt, ta thấy `u->next->info == info`, điều kiện này vi phạm vào điều kiện lặp của vòng lặp, nghĩa là vòng lặp sẽ phải kết thúc khi xét đến `u`. Điều này có nghĩa rằng, ta sẽ không duyệt đến `p`, và dĩ nhiên, `p` sẽ khác `nullptr`, và ta sẽ thực hiện thuật toán `DeleteAfter()` đối với `Last = u`.
+- Điều này cũng có nghĩa, giả thuyết của mình đặt ra sẽ sai và theo phương pháp phản chứng, thì ta không cần xét điều kiện `p->info == info`.
+
 ---
 
-> *Đây là handbook của mình dựa trên quá trình học môn Cấu trúc dữ liệu và Giải thuật ở Học viện Cơ sở do thầy Lưu Nguyễn Kì Thư giảng dạy. Lưu ý: đây không phải tài liệu giáo khoa mà là tài liệu tham khảo do mình biên soạn và tóm tắt lại.*
+Trên đây là những thuật toán cơ bản thường gặp khi làm việc với cấu trúc dữ liệu `Linked list`. Đây là handbook của mình dựa trên quá trình học môn Cấu trúc dữ liệu và Giải thuật ở Học viện Cơ sở do thầy Lưu Nguyễn Kì Thư giảng dạy. 
+
+**Lưu ý:** đây không phải tài liệu giáo khoa mà là tài liệu tham khảo do mình biên soạn và tóm tắt lại.

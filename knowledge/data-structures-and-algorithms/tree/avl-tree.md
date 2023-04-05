@@ -16,6 +16,8 @@
     - [Goal - Mục tiêu](#goal---mục-tiêu)
     - [Algorithm - Giải thuật](#algorithm---giải-thuật)
     - [RotateLeft - Module xoay trái](#rotateleft---module-xoay-trái)
+    - [RotateRight - Module xoay phải](#rotateright---module-xoay-phải)
+    - [Insert - Module thêm `node`](#insert---module-thêm-node)
 
 <!-- /code_chunk_output -->
 
@@ -249,3 +251,115 @@ digraph AVL {
 	C -> A;
 }
 ```
+
+#### RotateRight - Module xoay phải
+
+Ta thực hiện xoay phải BST quanh `root node` và bắt buộc phải có `left child node = p`. Sau khi xoay phải, thì `p` sẽ là `root node` mới và `root node` cũ trở thành `right child node` của `p`.
+
+`BinarySearchTree.h`
+
+```cpp
+namespace BinarySearchTree {
+	Pointer RotateRight(Pointer root);
+}
+```
+
+`BinarySeachTree.cpp`
+
+```cpp
+BinarySearchTree::Pointer BinarySearchTree::RotateRight(BinarySearchTree::Pointer root) {
+    if (root == nullptr) {
+        std::clog << "[ERROR] TREE IS EMPTY!\n";
+        return nullptr;
+    }
+
+    if (root->left == nullptr) {
+        std::clog << "[ERROR] CANNOT ROTATE RIGHT BECAUSE THERE IS NO LEFT TREE!\n";
+        return nullptr;
+    }
+
+    BinarySearchTree::Pointer s = root->left;
+    root->left = s->right;
+    s->right = root;
+
+    return s;
+}
+```
+
+**Giải thích Code:**
+
+Đầu tiên, ta filter (lọc bỏ) các trường hợp không thể thực hiện xoay cây như `root node` là `NULL` hay không tồn tại `left child node` của `root node`.
+
+Sau đó, ta xem xét một ví dụ nhỏ đơn giản như sau để hiểu được từng bước quá trình thực hiện xoay cây:
+
+> Với `root node` là $A$, ta sẽ thực hiện xoay phải quanh $A$.
+
+```dot
+digraph AVL {
+	A -> B;
+	A -> C;
+	B -> D;
+	B -> E;
+}
+```
+
+**Bước $1$:** Lưu trữ `left child node` của `root node` vào con trỏ $p$. Nghĩa là sẽ có một con trỏ $p$ trỏ tới `left child node` của $A$, là $B$.
+
+```dot
+digraph AVL {
+	A -> B;
+	A -> C;
+	B -> D;
+	B -> E;
+
+	B [label="B, p"]
+}
+```
+
+**Bước $2$:** Thay thế cây con bên trái của $A$ bằng cây con bên phải của $p$. Khi đó, liên kết cũ từ $A$ sang cây con trái (cũ) của nó sẽ bị mất (cạnh màu đỏ).
+
+```dot
+digraph AVL {
+	A -> B [arrowhead=none, color=red];
+	A -> C;
+	A -> E [color="#68B984"];
+	B -> D;
+	B -> E;
+
+	B [label="B, p"]
+}
+```
+
+**Bước $3$:** Thay thế cây con bên phải của $p$ bằng `root node`. Nghĩa là $A$ sẽ trở thành cây con bên phải của $p$ và $p$ sẽ thành `root node` mới.
+
+```dot
+digraph AVL {
+	B -> D;
+	B -> A [color="#68B984"];
+	B -> E [arrowhead=none, color=red];
+	A -> E;
+	A -> C;
+
+	B [label="B, p"]
+}
+```
+
+**Sau cùng** ta thu được cây mới như bên dưới và trả về nút gốc mới.
+
+```dot
+digraph AVL {
+	B -> D;
+	B -> A;
+	A -> E;
+	A -> C;
+}
+```
+
+#### Insert - Module thêm `node`
+
+Ta sẽ thêm một `node` có khóa $x$ và nội dung $a$ vào cây AVL. Ta lần lượt thực hiện các bước như sau:
+
+1. Thêm `node` theo giải thuật `Insert()` của BST.
+2. Cân bằng lại cây theo thuật toán xoay phải hoặc xoay trái.
+
+
