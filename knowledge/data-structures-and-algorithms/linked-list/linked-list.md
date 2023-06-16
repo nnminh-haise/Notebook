@@ -23,7 +23,7 @@
   - [InsertAfter - Thêm phần tử có nội dung `info` vào sau phần tử `p` trong danh sách](#insertafter---thêm-phần-tử-có-nội-dung-info-vào-sau-phần-tử-p-trong-danh-sách)
   - [DeleteFirst - Module xóa phần tử đứng đầu danh sách](#deletefirst---module-xóa-phần-tử-đứng-đầu-danh-sách)
   - [DeleteAfter - Module xóa phần tử đứng sau phần tử `p`](#deleteafter---module-xóa-phần-tử-đứng-sau-phần-tử-p)
-  - [InsertLast - Module xóa phần tử ở cuối danh sách](#insertlast---module-xóa-phần-tử-ở-cuối-danh-sách)
+  - [DeleteLast - Module xóa phần tử ở cuối danh sách](#deletelast---module-xóa-phần-tử-ở-cuối-danh-sách)
   - [DeleteInfo - Module xóa phần tử có nội dung `info`](#deleteinfo---module-xóa-phần-tử-có-nội-dung-info)
 
 <!-- /code_chunk_output -->
