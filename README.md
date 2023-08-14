@@ -1,7 +1,7 @@
 
 # Notebook
 
-*This is a collection of personal documentation, notes and blog posts about programming language, data structures and algorithms, framework, design patterns, and maybe more thing relate to software engineering.*
+*This is a collection of personal documentation, notes, and blog posts about programming language, data structures and algorithms, frameworks, design patterns, and maybe more knowledge related to software engineering.*
 
 ---
 
