@@ -9,7 +9,7 @@
 
 ### Java
 
-1. Fundamentals: [Java Fundamentals List](../Notebook/programming-language/java/Fundamentals/README.md)
+1. Fundamentals: [Java Fundamentals List](programming-language/java/Fundamentals/README.md)
 
 ---
 
