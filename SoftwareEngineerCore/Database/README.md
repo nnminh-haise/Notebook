@@ -5,4 +5,4 @@
 
 ---
 
-**Chapter 1:** [Basic of database & database managing system](Chapter1/README.md)
+**Chapter 1:** [Basic of database & database management system](Chapter1/README.md)
