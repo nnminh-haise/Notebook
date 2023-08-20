@@ -16,7 +16,7 @@
   - [Mức khung hình](#mức-khung-hình)
 - [Hệ quản trị cơ sở dữ liệu](#hệ-quản-trị-cơ-sở-dữ-liệu)
   - [Khái niệm](#khái-niệm)
-  - [Các chứ năng của hệ quản trị cơ sở dữ liệu](#các-chứ-năng-của-hệ-quản-trị-cơ-sở-dữ-liệu)
+  - [Các chức năng của hệ quản trị cơ sở dữ liệu](#các-chức-năng-của-hệ-quản-trị-cơ-sở-dữ-liệu)
   - [Khái niệm về sự độc lập dữ liệu và chương trình](#khái-niệm-về-sự-độc-lập-dữ-liệu-và-chương-trình)
   - [Bộ quản lí cơ sở dữ liệu](#bộ-quản-lí-cơ-sở-dữ-liệu)
   - [Người quản trị cơ sở dữ liệu](#người-quản-trị-cơ-sở-dữ-liệu)
@@ -92,7 +92,7 @@ flowchart LR
 
 Hệ quản trị cơ sở dữ liệu cho phép ta tổ chức cơ sở dữ liệu, lưu trữ nó trên thiết bị ghi nhớ và cung cấp cho chúng ta các thủ tục để sửa đổi cấu trúc cơ sở dữ liệu, cập nhật dữ liệu và truy vấn trên các dữ liệu.
 
-### Các chứ năng của hệ quản trị cơ sở dữ liệu
+### Các chức năng của hệ quản trị cơ sở dữ liệu
 
 1. Hỗ trợ một mô hình dữ liệu để tổ chức cơ sở dữ liệu nghĩa là một công cụ để trừu tượng hóa một cách toán học thế giới thực cần quản lý và thông qua đó người sử dụng có thể thấy được các dữ liệu của thế giới thực này.
 2. Hỗ trợ cho một vài ngôn ngữ lập trình cấp cao cho phép người sử dụng định nghĩa cấu trúc dữ liệu, truy xuất dữ liệu; ngoài ra còn cung cấp một ngôn ngữ để thao tác lên dữ liệu và truy vấn dữ liệu. Các ngôn ngữ đó được gọi là ngôn ngữ hỏi (Query Language), trong đó ngôn ngữ được sử dụng rộng rãi nhất là ngôn ngữ SQL (Structured Query Language).
@@ -129,7 +129,7 @@ Là khi **sơ đồ ý niệm thay đổi** nhưng **sơ đồ ngoài không tha
 
 ### Bộ quản lí cơ sở dữ liệu
 
-Bộ quản lý cơ sở dữ liệu là một module chương trình cung cấp sự giao tiếp giữa dữ liệu ở mức thấp được lưu trữ trong cơ sở dữ liệu với các chương trình ứng dụng. Bộ quản lý cơ sở dữ liệu có nhiệm vụ thực hiện các chức năng được trình bày ở phần [các chứ năng của hệ quản trị cơ sở dữ liệu](#các-chứ-năng-của-hệ-quản-trị-cơ-sở-dữ-liệu).
+Bộ quản lý cơ sở dữ liệu là một module chương trình cung cấp sự giao tiếp giữa dữ liệu ở mức thấp được lưu trữ trong cơ sở dữ liệu với các chương trình ứng dụng. Bộ quản lý cơ sở dữ liệu có nhiệm vụ thực hiện các chức năng được trình bày ở phần [các chức năng của hệ quản trị cơ sở dữ liệu](#các-chứ-năng-của-hệ-quản-trị-cơ-sở-dữ-liệu).
 
 ### Người quản trị cơ sở dữ liệu
 
