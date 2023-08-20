@@ -30,3 +30,9 @@
 
 1. Linear list: [Link](knowledge/data-structures-and-algorithms/linear-list/README.md)
 2. Linked list: [Link](knowledge/data-structures-and-algorithms/linked-list/README.md)
+
+---
+
+## Software Engineer Fundamental Knowledge
+
+Database Basic: [Table of content](SoftwareEngineerCore/Database/README.md)
