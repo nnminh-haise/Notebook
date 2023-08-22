@@ -270,3 +270,49 @@ public class InstanceOfOperatorSample {
     }
 }
 ```
+
+## Order of precedence
+
+1. Postfix operators: `expr++`, `expr--`
+   Example: `a++`
+
+2. Unary operators: `++expr`, `--expr`, `+expr`, `-expr`, `~expr`, `!expr`
+   Example: `++a`, `-b`
+
+3. Multiplicative operators: `*`, `/`, `%`
+   Example: `a * b`, `c / d`
+
+4. Additive operators: `+`, `-`
+   Example: `x + y`, `z - w`
+
+5. Shift operators: `<<`, `>>`, `>>>`
+   Example: `num << 2`, `value >> 3`
+
+6. Relational operators: `<`, `<=`, `>`, `>=`, `instanceof`
+   Example: `a < b`, `obj instanceof MyClass`
+
+7. Equality operators: `==`, `!=`
+   Example: `x == y`, `a != b`
+
+8. Bitwise AND operator: `&`
+   Example: `num1 & num2`
+
+9. Bitwise XOR operator: `^`
+   Example: `a ^ b`
+
+10. Bitwise OR operator: `|`
+    Example: `flag1 | flag2`
+
+11. Logical AND operator: `&&`
+    Example: `condition1 && condition2`
+
+12. Logical OR operator: `||`
+    Example: `conditionA || conditionB`
+
+13. Ternary conditional operator: `? :`
+    Example: `result = (a > b) ? a : b`
+
+14. Assignment operators: `=`, `+=`, `-=` , `*=`, `/=`, `%=` , `&=`, `^=`, `|=`, `<<=`, `>>=`, `>>>=`
+    Example: `x = 10`, `y += 5`
+
+Please note that parentheses `( )` can be used to explicitly define the order of evaluation within expressions. When in doubt, it's always a good practice to use parentheses to ensure the intended order of operations.
